@@ -12,3 +12,23 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Author {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  books     Book[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Book {
+  id            Int      @id @default(autoincrement())
+  author        Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId      Int
+  title         String
+  describtion String?
+  datePublished DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
