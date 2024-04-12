@@ -17,6 +17,7 @@ model Author {
   id        Int      @id @default(autoincrement())
   firstName String
   lastName  String
+  avatarUrl String?
   books     Book[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
